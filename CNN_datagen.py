@@ -6,7 +6,7 @@ import numpy as np
 import os
 from tqdm import tqdm
 
-def Crete_Folder_Images(name, directory, tn):
+def Create_Folder_Images(name, directory, tn):
     # Creating directory in the file
     if not os.path.exists(directory):
         os.makedirs(directory)
@@ -41,4 +41,4 @@ name=input('\nEnter your name: ')
 
 directory='Datasets/'+name
 tn= int(input('Enter no.of images to be taken: '))
-Crete_Folder_Images(name, directory, tn)
+Create_Folder_Images(name, directory, tn)
