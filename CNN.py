@@ -142,19 +142,17 @@ print(f'Loss: {loss}\nAccuracy: {acc*100}')
 
 # Plot training & test accuracy values
 plt.plot(history.history['acc'])
-plt.plot(history.history['val_acc'])
 plt.title('Model accuracy')
 plt.ylabel('Accuracy')
 plt.xlabel('Epoch')
-plt.legend(['Train', 'Test'], loc='upper left')
+plt.legend(['accuracy'], loc='upper left')
 plt.show()
 
 # Plot training & test loss values
 plt.plot(history.history['loss'])
-plt.plot(history.history['val_loss'])
 plt.title('Model loss')
 plt.ylabel('Loss')
 plt.xlabel('Epoch')
-plt.legend(['Train', 'Test'], loc='upper left')
+plt.legend(['loss'], loc='upper left')
 plt.show()
 
