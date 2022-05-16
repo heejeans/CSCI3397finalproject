@@ -38,7 +38,7 @@ from tqdm import tqdm
 
 
 
-path = 'Datasets/joy/'
+path = 'Datasets/joy/' #ADD NAME OF FOLDER CREATED FROM CNN_datagen.py FOR CODE TO RUN CORRECTLY (replace joy with folder name)
 filename = 'data.csv'
 files = os.listdir(path)
 dim = (100, 100)
