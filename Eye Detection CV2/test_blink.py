@@ -116,13 +116,24 @@ while True:
 
         cv2.putText(
             frame,
-            "PERCLOS Blink Rate: {}".format(CLOSED_EYE_CT/FRAME_CT*100), 
+            "PERCLOS Blink Rate: {:.2f}%".format(CLOSED_EYE_CT/FRAME_CT*100), 
             (10,50),
             cv2.FONT_HERSHEY_SIMPLEX,
             0.7,
             (0, 0, 255),
             2,
         )
+
+        if (CLOSED_EYE_CT/FRAME_CT*100) > 10:
+            cv2.putText(
+                frame,
+                "Warning! You may be drowsy!", 
+                (10,70),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.7,
+                (0, 0, 255),
+                2,
+            )
 
     cv2.imshow("Frame", frame)
     key = cv2.waitKey(1) & 0xFF
