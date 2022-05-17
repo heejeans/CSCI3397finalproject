@@ -27,8 +27,8 @@ ap.add_argument("-v", "--video", type=str, default="", help="path to input video
 args = vars(ap.parse_args())
 
 
-EYE_AR_THRESH = 0.3
-EYE_AR_CONSEC_FRAMES = 3
+EYE_AR_THRESH = 0.2
+EYE_AR_CONSEC_FRAMES = 1
 
 
 COUNTER = 0
@@ -52,6 +52,9 @@ fileStream = False
 time.sleep(1.0)
 
 
+FRAME_CT = 0
+CLOSED_EYE_CT = 0
+
 while True:
 
     if fileStream and not vs.more():
@@ -60,6 +63,7 @@ while True:
     frame = vs.read()
     frame = imutils.resize(frame, width=800)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    FRAME_CT += 1
 
     rects = detector(gray, 0)
 
@@ -82,6 +86,7 @@ while True:
 
         if ear < EYE_AR_THRESH:
             COUNTER += 1
+            CLOSED_EYE_CT += 1
 
         else:
 
@@ -103,6 +108,16 @@ while True:
             frame,
             "EAR: {:.2f}".format(ear),
             (300, 30),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.7,
+            (0, 0, 255),
+            2,
+        )
+
+        cv2.putText(
+            frame,
+            "PERCLOS Blink Rate: {}".format(CLOSED_EYE_CT/FRAME_CT*100), 
+            (10,50),
             cv2.FONT_HERSHEY_SIMPLEX,
             0.7,
             (0, 0, 255),
